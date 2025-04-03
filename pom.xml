@@ -1,0 +1,49 @@
+package it
+
+import java.util.Scanner;
+
+
+        public class Main {
+        public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введіть текстовий рядок:");
+        String input = scanner.nextLine();
+        scanner.close();
+
+        // Підрахунок кількості великих літер
+        int uppercaseCount = 0;
+        for (int i = 0; i < input.length(); i++) {
+        if (Character.isUpperCase(input.charAt(i))) {
+        uppercaseCount++;
+        }
+        }
+
+        // Розбиваємо рядок на слова
+        String[] words = input.split("\\s+");
+        int minLen = Integer.MAX_VALUE;
+        // Знаходимо мінімальну довжину слова
+        for (String word : words) {
+        if (word.length() < minLen) {
+        minLen = word.length();
+        }
+        }
+
+        // Збираємо слова з найменшою кількістю літер та формуємо новий текст
+        StringBuilder shortestWords = new StringBuilder();
+        StringBuilder modifiedText = new StringBuilder();
+        for (String word : words) {
+        if (word.length() == minLen) {
+        shortestWords.append(word).append(" ");
+        }
+        if (!Character.isLowerCase(word.charAt(0))) {
+        modifiedText.append(word).append(" ");
+        }
+        }
+
+        // Вивід результатів
+        System.out.println("Кількість великих літер: " + uppercaseCount);
+        System.out.println("Слова з найменшою кількістю літер: " + shortestWords.toString().trim());
+        System.out.println("Текст після видалення слів, що починаються з малої літери:");
+        System.out.println(modifiedText.toString().trim());
+        }
+        }
